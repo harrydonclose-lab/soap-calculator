@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#176b3a">
+  <meta name="description" content="Calculatrice de corps gras, équivalents et rapport PDF. Fonctionne hors ligne.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <title>CorpsGrasCalc — Calculatrice</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="CorpsGrasCalc, accueil">
+      <img src="./assets/images/logo.svg" alt="" width="42" height="42">
+      <span>CorpsGrasCalc<small>Calculatrice des corps gras</small></span>
+    </a>
+    <div class="top-actions">
+      <span id="offlineStatus" class="status"><i></i> Vérification…</span>
+      <button id="installBtn" class="button button-light" hidden>Installer l’application</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">CALCUL SIMPLE · RAPPORT INSTANTANÉ</p>
+        <h1>Calculez vos équivalents<br class="desktop"> en toute simplicité.</h1>
+        <p>Ajoutez plusieurs corps gras, saisissez les quantités et obtenez votre résultat. Votre calculatrice fonctionne aussi hors connexion après le premier chargement.</p>
+      </div>
+      <div class="hero-mark" aria-hidden="true"><img src="./assets/images/logo.svg" alt=""></div>
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <div class="panel-heading">
+          <div><span class="step">01</span><h2>Ajouter un corps gras</h2></div>
+          <p>Chaque corps gras ne peut être ajouté qu’une seule fois.</p>
+        </div>
+        <div class="add-row">
+          <label class="sr-only" for="fatSelect">Sélectionner un corps gras</label>
+          <select id="fatSelect">
+            <option value="">-- Sélectionner un corps gras --</option>
+            <option value="palme">Huile de palme</option>
+            <option value="palmiste">Huile de palmiste</option>
+            <option value="karite">Beurre de karité</option>
+          </select>
+          <button id="addBtn" class="button button-primary">Ajouter <span aria-hidden="true">＋</span></button>
+        </div>
+        <p id="addMessage" class="message" role="status"></p>
+        <div class="divider"></div>
+        <div class="panel-heading selected-heading">
+          <div><span class="step">02</span><h2>Corps gras sélectionnés</h2></div>
+          <span id="itemCount" class="count">0 élément</span>
+        </div>
+        <div id="selectedList" class="selected-list">
+          <div class="empty-state"><span class="empty-icon">＋</span><strong>Aucun corps gras ajouté</strong><p>Choisissez un corps gras ci-dessus pour commencer.</p></div>
+        </div>
+        <div class="button-row">
+          <button id="calculateBtn" class="button button-primary button-wide"><span aria-hidden="true">▦</span> Calculer les équivalents</button>
+          <button id="resetBtn" class="button button-outline">Réinitialiser</button>
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <div class="panel-heading">
+          <div><span class="step">03</span><h2>Résultats du calcul</h2></div>
+          <span class="result-icon" aria-hidden="true">✓</span>
+        </div>
+        <p class="muted">Les équivalents sont calculés à partir des quantités saisies et des coefficients de chaque corps gras.</p>
+        <div id="results" class="results">
+          <div class="result-empty">Vos résultats apparaîtront ici après le calcul.</div>
+        </div>
+        <div class="total-card">
+          <div class="total-label"><span class="drop">◈</span><div><strong>Équivalent total</strong><small id="totalHint">En attente du calcul</small></div></div>
+          <strong id="totalValue" class="total-value">—</strong>
+        </div>
+        <button id="pdfBtn" class="button button-pdf button-wide"><span aria-hidden="true">▤</span> Télécharger le rapport PDF</button>
+        <p class="footnote">Le rapport est généré directement dans votre navigateur, sans bibliothèque externe ni connexion Internet.</p>
+        <div class="privacy-note"><span>✓</span><div><strong>Vos données restent sur votre appareil</strong><p>Aucun compte et aucun envoi de données vers un serveur.</p></div></div>
+      </section>
+    </div>
+    <footer><img src="./assets/images/logo.svg" alt="" width="25" height="25"><span>CorpsGrasCalc</span><span class="footer-dot">·</span><span>Application installable et utilisable hors ligne</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
